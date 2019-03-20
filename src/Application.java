@@ -1,12 +1,15 @@
 public class Application {
 
     public static void main(String[] args) {
-        Game game = new Game("foo", 3);
-        Prompter prompter = new Prompter(game);
-        while (!game.isWon()) {
-            prompter.promptForGuess();
+        Model model = new Model();
+        View view = new Terminal();
+        Controller controller = new Controller(model, view);
+        while (!controller.isWon()) {
+            controller.askGuess();
         }
-        prompter.displayResult();
+
+
+
     }
 
 
