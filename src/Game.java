@@ -5,6 +5,7 @@ public class Game {
     private int maximumAmount;
     private int currentAmount;
     private int guess;
+    private int tries;
 
     public Game(String itemName, int maximumAmount) {
         Random random = new Random();
@@ -13,12 +14,21 @@ public class Game {
         currentAmount = random.nextInt(maximumAmount) + 1;
     }
 
+    public String getItemName() {
+        return itemName;
+    }
+
     public int getMaximumAmount() {
         return maximumAmount;
     }
 
+    public int getTries() {
+        return tries;
+    }
+
     public void applyGuess(int guess) {
         this.guess = guess;
+        tries++;
     }
 
     public boolean isWon() {

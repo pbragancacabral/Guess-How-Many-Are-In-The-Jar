@@ -6,6 +6,7 @@ public class Application {
         while (!game.isWon()) {
             prompter.promptForGuess();
         }
+        prompter.displayResult();
     }
 
 
