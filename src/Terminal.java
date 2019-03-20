@@ -5,19 +5,21 @@ public class Terminal implements View {
 
     @Override
     public String askItemName() {
-        System.out.print("Item? ");
+        System.out.print("What item would you like to store in the Jar? ");
         return scanner.nextLine();
     }
 
     @Override
-    public String askMaximumAmount() {
-        System.out.print("Max amount? ");
+    public String askMaximumAmount(String itemName) {
+        System.out.printf("What is the maximum amount of %s that will fit in the Jar? ",
+                itemName);
         return scanner.nextLine();
     }
 
     @Override
-    public String askGuess() {
-        System.out.println("Guess?");
+    public String askGuess(String itemName) {
+        System.out.printf("How many %s are in the Jar? ",
+                itemName);
         return scanner.nextLine();
     }
 

@@ -12,8 +12,8 @@ public class Controller {
         this.view = view;
         Random random = new Random();
         String itemName = askItemName();
-        int maximumAmount = askMaximumAmount();
         model.setItemName(itemName);
+        int maximumAmount = askMaximumAmount();
         model.setMaximumAmount(maximumAmount);
         model.setCurrentAmount(random.nextInt(model.getMaximumAmount()) + 1);
     }
@@ -36,10 +36,11 @@ public class Controller {
     }
 
     private int askMaximumAmount() {
+        String itemName = model.getItemName();
         int maximumAmount;
         while (true) {
             try {
-                maximumAmount = Integer.parseInt(view.askMaximumAmount());
+                maximumAmount = Integer.parseInt(view.askMaximumAmount(itemName));
                 break;
             } catch (Exception e) {
                 view.display("A number is required.");
@@ -50,9 +51,10 @@ public class Controller {
     }
 
     public void askGuess() {
+        String itemName = model.getItemName();
         while (true) {
             try {
-                guess = Integer.parseInt(view.askGuess());
+                guess = Integer.parseInt(view.askGuess(itemName));
                 if (guess > model.getMaximumAmount()) {
                     throw new IllegalArgumentException(String.format("Guess must be between 1 and %s",
                             model.getMaximumAmount()));
@@ -73,9 +75,9 @@ public class Controller {
 
     public void displayHint() {
         if (guess > model.getCurrentAmount()) {
-            view.display("Guess to high.");
+            view.display("Your guess is to high.");
         } else {
-            view.display("Guess too low.");
+            view.display("Your guess is too low.");
         }
     }
 
