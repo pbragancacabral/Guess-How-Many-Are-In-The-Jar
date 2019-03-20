@@ -5,19 +5,31 @@ public class Terminal implements View {
 
     @Override
     public String askItemName() {
-        System.out.println("Item?");
+        System.out.print("Item? ");
         return scanner.nextLine();
     }
 
     @Override
-    public int askMaximumAmount() {
-        System.out.println("Max amount>");
-        return scanner.nextInt();
+    public String askMaximumAmount() {
+        System.out.print("Max amount? ");
+        return scanner.nextLine();
     }
 
     @Override
-    public int askGuess() {
+    public String askGuess() {
         System.out.println("Guess?");
-        return scanner.nextInt();
+        return scanner.nextLine();
+    }
+
+    @Override
+    public void display(int tries) {
+        System.out.printf("Congratulations, it took you %d %s.",
+                tries,
+                tries == 1 ? "try" : "tries");
+    }
+
+    @Override
+    public void display(String message) {
+        System.out.println(message);
     }
 }
