@@ -1,19 +1,29 @@
-import java.util.Scanner;
+import java.util.Random;
 
 public class Game {
+    private String itemName;
+    private int maximumAmount;
+    private int currentAmount;
+    private int guess;
 
-    public static void main(String[] args) {
-        Jar jar = createJar();
-        Prompter prompter = new Prompter(jar);
+    public Game(String itemName, int maximumAmount) {
+        Random random = new Random();
+        this.itemName = itemName;
+        this.maximumAmount = maximumAmount;
+        currentAmount = random.nextInt(maximumAmount) + 1;
     }
 
-    private static Jar createJar() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("What would you like to store in the jar? ");
-        String itemName = scanner.nextLine();
-        System.out.printf("What is the maximum capacity of %s in the jar? ", itemName);
-        int many = scanner.nextInt();
-        return new Jar(itemName, many);
+    public int getMaximumAmount() {
+        return maximumAmount;
     }
+
+    public void applyGuess(int guess) {
+        this.guess = guess;
+    }
+
+    public boolean isWon() {
+        return guess == currentAmount;
+    }
+
 
 }
